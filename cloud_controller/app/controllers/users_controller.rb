@@ -26,14 +26,8 @@ class UsersController < ApplicationController
       end
     end
 
-    user = ::User.new :email => body_params[:email]
-    user.set_and_encrypt_password(body_params[:password])
-
-    if user.save
-      render :status => 204, :nothing => true
-    else
-      raise CloudError.new(CloudError::BAD_REQUEST)
-    end
+    ::User.create_user(body_params[:email], body_params[:password])
+    render :status => 204, :nothing => true
   end
 
   def delete

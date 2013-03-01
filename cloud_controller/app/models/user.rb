@@ -39,6 +39,13 @@ class User < ActiveRecord::Base
       end
     end
 
+    def create_user(email, password)
+      user = ::User.new :email => email
+      user.set_and_encrypt_password(password)
+      raise CloudError.new(CloudError::BAD_REQUEST) unless user.save
+      user
+    end
+
     def from_token(user_token)
       if user_token.valid?
         find_by_email(user_token.email)
