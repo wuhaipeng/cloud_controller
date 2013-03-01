@@ -101,6 +101,12 @@ uaa:
   client_secret: cloudcontrollerclientsecret
   token_creation_email_filter: [""]
 
+# Enable the use of ldap server
+ldap:
+  enabled: false
+  host: ldap_server
+  port: 389
+
 # App staging parameters
 staging:
   max_concurrent_stagers: 10
